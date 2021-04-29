@@ -1,5 +1,6 @@
 import React from "react";
-import { SafeAreaView, TextInput, FlatList, Text } from "react-native";
+import { SafeAreaView, TextInput, FlatList, Text, StyleSheet } from "react-native";
+import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
 import ApiRequest from "./../api/Call-GitHub"
 
 export default class Home extends React.Component {
@@ -38,9 +39,12 @@ export default class Home extends React.Component {
         return (
         <SafeAreaView>
             <TextInput
+            style={styles.input}
+            placeholderTextColor = "#9a73ef"
+
             onSubmitEditing={()=>this.callUser(this.state.inputText)}
             onChangeText={(text) => this.setState({inputText: text})}
-            placeholder="Search User"
+            placeholder=" Search User"
             keyboardType="default"
             />
             <FlatList
@@ -57,3 +61,13 @@ export default class Home extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    input: {
+       margin: 15,
+       height: 40,
+       borderColor: '#7a42f4',
+       borderWidth: 1,
+       color: 'grey'
+    }
+ })
