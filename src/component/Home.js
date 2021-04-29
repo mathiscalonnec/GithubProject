@@ -7,7 +7,7 @@ export default class Home extends React.Component {
 
     constructor(props) {
         super(props)
-        this.users = [
+        this.users_tmp = [
             {
             id: '1',
             name: 'Patrick jean',
@@ -23,13 +23,15 @@ export default class Home extends React.Component {
         ];
         this.state = {
             inputText: "",
+            users: []
         }
     }
   
      callUser = async (text) => {
         if (text.length > 2) {
-            await ApiRequest.getInfoUser(text).then(data => {
+            await ApiRequest.getInfoUser(text, 100).then(data => {
                 console.log (data)
+                this.setState({users: data})
             })
         }
     };
@@ -48,11 +50,11 @@ export default class Home extends React.Component {
             keyboardType="default"
             />
             <FlatList
-            data={this.users}
+            data={this.state.users}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
             <Text style={{ fontSize: 22 }}>
-                {item.id} - {item.name}
+                {item.id} - {item.login}
             </Text>
             )}
             />
