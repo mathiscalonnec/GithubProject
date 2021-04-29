@@ -10,17 +10,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to User"
-        onPress={() => navigation.navigate('UserScreen')}
-      />
-  </View>
-  );
-}
+import Home from "./Home"
+
 
 function UserScreen() {
   return (
@@ -32,13 +23,13 @@ function UserScreen() {
 
 const Stack = createStackNavigator();
 
-function App() {
+const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
          name="Home" 
-         component={HomeScreen}
+         component={Home}
          options={{ title: 'Home' }}
          />
         <Stack.Screen
@@ -49,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navigation;

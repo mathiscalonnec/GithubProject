@@ -38,7 +38,7 @@ export default class Home extends React.Component {
         return (
         <SafeAreaView>
             <TextInput
-            onSubmitEditing={this.callUser(this.state.inputText)}
+            onSubmitEditing={()=>this.callUser(this.state.inputText)}
             onChangeText={(text) => this.setState({inputText: text})}
             placeholder="Search User"
             keyboardType="default"
