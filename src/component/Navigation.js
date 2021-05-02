@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from "./Home"
+import User from "./User"
 
 
 function UserScreen() {
@@ -34,7 +35,7 @@ const Navigation = () => {
          />
         <Stack.Screen
          name="User"
-         component={UserScreen} />
+         component={User} />
       </Stack.Navigator>
     </NavigationContainer>
   );

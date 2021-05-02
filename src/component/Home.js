@@ -32,7 +32,7 @@ export default class Home extends React.Component {
             <View style={{alignItems:"center",flex:1}}>
               <Text style={{marginTop:10, fontSize:20}}>{item.login}</Text>
             </View>
-            <TouchableOpacity style={{height:50,width:50, justifyContent:"center",alignItems:"center"}}>
+            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item})}>
               <Text style={{color:"#7a42f4"}}>More</Text>
             </TouchableOpacity>
           </View>

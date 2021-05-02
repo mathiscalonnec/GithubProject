@@ -18,4 +18,42 @@ export default class ApiRequest {
         })
     }
 
+    static async getRepoUser(name) {
+        return await Axios.get(`https://api.github.com/users/${name}/repos`, {
+          })
+        .then((response) => {
+           // console.log("ici",response.data)
+            return (response.data)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
+
+    static async getFollowersUser(name) {
+        return await Axios.get(`https://api.github.com/users/${name}/followers`, {
+          })
+        .then((response) => {
+           // console.log("ici",response.data)
+            return (response.data)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
+
+    static async getUser(name) {
+        return await Axios.get(`https://api.github.com/users/${name}`, {
+          })
+        .then((response) => {
+           // console.log("ici",response.data)
+            return (response.data)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
 };
