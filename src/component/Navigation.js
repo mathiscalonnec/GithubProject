@@ -15,7 +15,6 @@ import User from "./User"
 import Followers from "./Followers"
 import Repository from "./Repository"
 import Contributors from './Contributors';
-import RepositoriesSearch from "./RepositoriesSearch"
 
 function UserScreen() {
   return (
@@ -47,9 +46,6 @@ const Navigation = () => {
         <Stack.Screen
          name="Followers"
          component={Followers}/>
-        <Stack.Screen
-         name="Repositories"
-         component={RepositoriesSearch}/>
 
       </Stack.Navigator>
     </NavigationContainer>
