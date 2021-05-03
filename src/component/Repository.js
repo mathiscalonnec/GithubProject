@@ -52,7 +52,7 @@ export default class Repository extends React.Component {
                     <Text style={styles.infoRepo}> Default branch: {this.state.defaultBranchName} </Text>
                 </View>
                 <View style={styles.alignButton}>
-                    <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Contributors", {data:this.props.route.params.data})}>
+                    <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Issues", {data:this.props.route.params.data})}>
                         <Text style={styles.bottomButton}>Issues</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Contributors", {data:this.props.route.params.data})}>

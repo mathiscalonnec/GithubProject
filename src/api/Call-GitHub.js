@@ -61,11 +61,23 @@ export default class ApiRequest {
     }
 
     static async getContributorsUser(name, repo) {
-        console.log(name, repo)
         return await Axios.get(`https://api.github.com/repos/${name}/${repo}/contributors`, {
           })
         .then((response) => {
             //console.log("ici",response.data)
+            return (response.data)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
+
+    static async getIssuesUser(name, repo) {
+        return await Axios.get(`https://api.github.com/repos/${name}/${repo}/issues`, {
+          })
+        .then((response) => {
+            // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {

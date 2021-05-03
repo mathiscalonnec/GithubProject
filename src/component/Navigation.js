@@ -14,8 +14,10 @@ import Home from "./Home"
 import User from "./User"
 import Followers from "./Followers"
 import Repository from "./Repository"
-import Contributors from './Contributors';
+import Contributors from './Contributors'
 import RepositoriesSearch from './RepositoriesSearch'
+import Issues from './Issues'
+import Issue from './Issue'
 
 function UserScreen() {
   return (
@@ -50,7 +52,12 @@ const Navigation = () => {
         <Stack.Screen
          name="RepositoriesSearch"
          component={RepositoriesSearch}/>
-
+        <Stack.Screen
+         name="Issues"
+         component={Issues}/>
+        <Stack.Screen
+         name="Issue"
+         component={Issue}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,8 +9,6 @@ import { SafeAreaView,
          TouchableOpacity
         } from "react-native";
 
-
-import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
 import ApiRequest from "./../api/Call-GitHub"
 
 
@@ -42,7 +40,6 @@ export default class Contributors extends React.Component {
 
     async componentDidMount() {
         await ApiRequest.getContributorsUser(this.props.route.params.data.owner.login ,this.props.route.params.data.name).then(data => {
-            console.log(data)
             this.setState({Contributor: data})
         })
 
@@ -64,19 +61,19 @@ export default class Contributors extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    background: {
-      backgroundColor: '#294C60',
-      flex:1
-    },
-  
-      listItem:{
-          margin:10,
-          padding:10,
-          backgroundColor:'#5A7C90',
-          width:"80%",
-          flex:1,
-          alignSelf:"center",
-          flexDirection:"row",
-          borderRadius:20
-        }
-   })
+  background: {
+    backgroundColor: '#294C60',
+    flex:1
+  },
+
+  listItem:{
+    margin:10,
+    padding:10,
+    backgroundColor:'#5A7C90',
+    width:"80%",
+    flex:1,
+    alignSelf:"center",
+    flexDirection:"row",
+    borderRadius:20
+ }
+})
