@@ -12,7 +12,7 @@ import ApiRequest from "./../api/Call-GitHub"
 
 
 
-export default class Home extends React.Component {
+export default class RepositoriesSearch extends React.Component {
 
     constructor(props) {
         super(props)
@@ -25,11 +25,12 @@ export default class Home extends React.Component {
     Item (item) {
         return (
           <View style={styles.listItem}>
-            <Image source={{uri:item.avatar_url}}  style={{width:60, height:60,borderRadius:30}} />
             <View style={{alignItems:"center",flex:1}}>
-              <Text style={{marginTop:10, fontSize:20, color:"#EBE7E6"}}>{item.login}</Text>
+              <Text style={{marginTop:10, fontSize:22, marginLeft:-150, fontFamily:'bold', color:"#EBE7E6"}}>{item.name}</Text>
+              <Text style={{marginTop:10, fontSize:16, marginLeft:-100, color:"#EBE7E6"}}>{item.owner.login}</Text>
             </View>
-            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item})}>
+            <TouchableOpacity style={{height:50, width:50, fontSize:20, marginRight: 10, justifyContent:"center", alignItems:"center"}}
+                              onPress={() => this.props.navigation.navigate("Repository", {data:item})}>
               <Text style={{color:"#F07167"}}>More</Text>
             </TouchableOpacity>
           </View>
@@ -38,7 +39,7 @@ export default class Home extends React.Component {
   
      callUser = async (text) => {
         if (text.length > 2) {
-            await ApiRequest.getInfoUser(text, 100).then(data => {
+            await ApiRequest.getRepositories(text, 100).then(data => {
                 this.setState({users: data})
             })
         }
@@ -49,8 +50,8 @@ export default class Home extends React.Component {
         return (
         <SafeAreaView style={styles.background}>
 
-            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("RepositoriesSearch")}>
-              <Text style={{color:"#F07167"}}>Repositories</Text>
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Home")}>
+              <Text style={{color:"#F07167"}}>User</Text>
             </TouchableOpacity>
 
             <TextInput
@@ -59,7 +60,7 @@ export default class Home extends React.Component {
 
             onSubmitEditing={()=>this.callUser(this.state.inputText)}
             onChangeText={(text) => this.setState({inputText: text})}
-            placeholder=" Search User"
+            placeholder=" Search Repository"
             keyboardType="default"
             />
             <View>
