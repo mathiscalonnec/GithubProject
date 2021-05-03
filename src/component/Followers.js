@@ -8,18 +8,19 @@ import { SafeAreaView,
          View,
          TouchableOpacity
         } from "react-native";
+
+
 import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
 import ApiRequest from "./../api/Call-GitHub"
 
 
-
-export default class Home extends React.Component {
+export default class Followers extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            inputText: "",
-            users: []
+            login: this.props.route.params.data,
+            Followers:""
         }
     }
 
@@ -36,51 +37,30 @@ export default class Home extends React.Component {
           </View>
         );
       }
-  
-     callUser = async (text) => {
-        if (text.length > 2) {
-            await ApiRequest.getInfoUser(text, 100).then(data => {
-                this.setState({users: data})
-            })
-        }
-    };
 
+
+    async componentDidMount() {
+                await ApiRequest.getFollowersUser(this.state.login).then(data => {
+                    this.setState({Followers: data})
+                })
+            }
         
     render () {
         return (
         <SafeAreaView>
-            <TextInput
-            style={styles.input}
-            placeholderTextColor = "#9a73ef"
-
-            onSubmitEditing={()=>this.callUser(this.state.inputText)}
-            onChangeText={(text) => this.setState({inputText: text})}
-            placeholder=" Search User"
-            keyboardType="default"
-            />
             <View>
             <FlatList
-            data={this.state.users}
+            data={this.state.Followers}
             keyExtractor={item => item.id}
             renderItem= {(item) => this.Item(item.item) }
             />  
             </View>
-          
         </SafeAreaView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    input: {
-       margin: 15,
-       height: 40,
-       borderColor: '#7a42f4',
-       borderWidth: 2,
-       borderRadius:17,
-       color: 'grey',
-       paddingLeft:20
-    },
     listItem:{
         margin:10,
         padding:10,
