@@ -8,7 +8,6 @@ import { SafeAreaView,
          View,
          TouchableOpacity
         } from "react-native";
-import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
 import ApiRequest from "./../api/Call-GitHub"
 
 
@@ -50,7 +49,7 @@ export default class Home extends React.Component {
         return (
         <SafeAreaView style={styles.background}>
 
-            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("User", {data:item})}>
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Repositories")}>
               <Text style={{color:"#F07167"}}>Repositories</Text>
             </TouchableOpacity>
 

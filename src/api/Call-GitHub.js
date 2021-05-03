@@ -18,6 +18,22 @@ export default class ApiRequest {
         })
     }
 
+    static async getRepositories(name, per_page) {
+        return await Axios.get(`https://api.github.com/search/repositories?q=${name}&per_page=${per_page}`, {
+            params: {
+                accept: 'accept'
+            }
+          })
+        .then((response) => {
+           // console.log("ici",response.data)
+            return (response.data.items)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
+
     static async getRepoUser(name) {
         return await Axios.get(`https://api.github.com/users/${name}/repos`, {
           })
