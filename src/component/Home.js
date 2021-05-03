@@ -28,10 +28,10 @@ export default class Home extends React.Component {
           <View style={styles.listItem}>
             <Image source={{uri:item.avatar_url}}  style={{width:60, height:60,borderRadius:30}} />
             <View style={{alignItems:"center",flex:1}}>
-              <Text style={{marginTop:10, fontSize:20}}>{item.login}</Text>
+              <Text style={{marginTop:10, fontSize:20, color:"#EBE7E6"}}>{item.login}</Text>
             </View>
             <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item})}>
-              <Text style={{color:"#7a42f4"}}>More</Text>
+              <Text style={{color:"#F07167"}}>More</Text>
             </TouchableOpacity>
           </View>
         );
@@ -48,10 +48,10 @@ export default class Home extends React.Component {
         
     render () {
         return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.background}>
             <TextInput
             style={styles.input}
-            placeholderTextColor = "#9a73ef"
+            placeholderTextColor = "#F07167"
 
             onSubmitEditing={()=>this.callUser(this.state.inputText)}
             onChangeText={(text) => this.setState({inputText: text})}
@@ -72,19 +72,23 @@ export default class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    background: {
+      backgroundColor: '#294C60',
+      flex:1
+    },
     input: {
        margin: 15,
        height: 40,
-       borderColor: '#7a42f4',
+       borderColor: "#F07167",
        borderWidth: 2,
        borderRadius:17,
-       color: 'grey',
+       color:"#F07167",
        paddingLeft:20
     },
     listItem:{
         margin:10,
         padding:10,
-        backgroundColor:"#FFF",
+        backgroundColor:'#5A7C90',
         width:"80%",
         flex:1,
         alignSelf:"center",

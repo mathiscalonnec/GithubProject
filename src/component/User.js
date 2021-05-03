@@ -66,11 +66,11 @@ export default class User extends React.Component {
             />
             <Text style={styles.userName}> {this.state.user}</Text>
             <TouchableOpacity  style={styles.userFollowers} onPress={() =>this.props.navigation.navigate("Followers", {data:this.state.user})}>
-                <Text style={{ fontSize: 15, color:'grey'}} > Followers {this.state.followers} </Text>
+                <Text style={{ fontSize: 15, color:"#EBE7E6"}} > Followers {this.state.followers} </Text>
             </TouchableOpacity>
             <Text style={styles.userType}> {this.state.type} </Text>
             <View style={styles.blockDescription}>
-                <Text style={styles.userDescription}> {this.state.description} </Text>    
+                <Text style={styles.userDescription} numberOfLines={3}> {this.state.description} </Text>    
             </View>
 
                 <FlatList
@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginTop: -21,
         marginLeft: 280,
-        color: 'grey',
+        color:"#EBE7E6"
     },
     userType:{
-        color: 'grey',
+        color:"#EBE7E6",
         marginTop: 30,
         marginLeft: 280,
 
