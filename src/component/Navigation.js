@@ -13,6 +13,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from "./Home"
 import User from "./User"
 import Followers from "./Followers"
+import Repository from "./Repository"
+import Contributors from './Contributors';
 
 function UserScreen() {
   return (
@@ -35,6 +37,12 @@ const Navigation = () => {
         <Stack.Screen
          name="User"
          component={User}/>
+        <Stack.Screen
+         name="Repository"
+         component={Repository}/>
+        <Stack.Screen
+         name="Contributors"
+         component={Contributors}/>
         <Stack.Screen
          name="Followers"
          component={Followers}/>
