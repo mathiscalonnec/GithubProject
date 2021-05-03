@@ -49,6 +49,11 @@ export default class Home extends React.Component {
     render () {
         return (
         <SafeAreaView style={styles.background}>
+
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("User", {data:item})}>
+              <Text style={{color:"#F07167"}}>Repositories</Text>
+            </TouchableOpacity>
+
             <TextInput
             style={styles.input}
             placeholderTextColor = "#F07167"
@@ -94,5 +99,15 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         flexDirection:"row",
         borderRadius:20
+      },
+      repositoryButton:{
+        height:40,
+        width:100,
+        marginTop: 10,
+        marginLeft:280,
+        borderRadius:17,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:'grey',
       }
  })
