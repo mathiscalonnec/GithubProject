@@ -6,7 +6,8 @@ import { SafeAreaView,
     StyleSheet, 
     Image,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
    } from "react-native";
 import ApiRequest from "./../api/Call-GitHub"
 
@@ -22,7 +23,9 @@ export default class Issue extends React.Component {
                     <Text style={{marginTop:25, fontSize:18, color:"#EBE7E6"}}> Status : {this.props.route.params.data.state}</Text>
                 </View>
                 <View style={styles.blockDescription}>
+                    <ScrollView contentContainerStyle={{ paddingBottom: 30 }} showsVerticalScrollIndicator={false}>
                     <Text style={styles.issueDescription}> {this.props.route.params.data.body} </Text>    
+                    </ScrollView>
                 </View>            
             </SafeAreaView>
         )
@@ -63,5 +66,6 @@ const styles = StyleSheet.create({
         borderWidth:10,
         borderColor: '#294C60',
         minHeight: 80,
+        maxHeight: 500,
     },
 })
