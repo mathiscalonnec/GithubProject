@@ -9,12 +9,12 @@ export default class ApiRequest {
             }
           })
         .then((response) => {
-           // console.log("ici",response.data)
+            // console.log("ici",response.data)
             return (response.data.items)
         })
         .catch((error) => {
             //console.log("Err", error.response)
-            return (error.response)
+            return ("undefined")
         })
     }
 

@@ -13,6 +13,7 @@ import { SafeAreaView,
 import ApiRequest from "./../api/Call-GitHub"
 import RepositoriesSearch from "./RepositoriesSearch";
 
+/*
 _saveUser = async (username) => {
   try {
     await AsyncStorage.setItem(
@@ -22,7 +23,7 @@ _saveUser = async (username) => {
   } catch (error) {
       console.log(error.message)
   }
-};
+}; */
 
 
 
@@ -35,6 +36,7 @@ export default class Home extends React.Component {
             users: [],
             repoOrUser: false,
             NbUser: 20,
+            saveInputtext: "",
         }
     }
 
@@ -55,10 +57,29 @@ export default class Home extends React.Component {
      callUser = async () => {
         if (this.state.inputText.length > 2) {
             await ApiRequest.getInfoUser(this.state.inputText, this.state.NbUser).then(data => {
-                this.setState({users: data})
+                if (data != "undefined")
+                  this.setState({users: data})
             })
         }
     };
+
+    loadNewElem = (item) => {
+      console.log(item.distanceFromEnd)
+      this.setState(
+        {
+          NbUser: this.state.NbUser + 20
+        },
+        () => {
+          this.callUser();
+        }
+        )
+        console.log(this.state.NbUser, this.state.inputText)
+    }
+
+    refreshShearchBar = (text) => {
+      this.setState({inputText: text})
+      this.setState({NbUser: 20})
+    }
 
     DisplayUser = () => {
       return (
@@ -66,9 +87,8 @@ export default class Home extends React.Component {
           <TextInput
           style={styles.input}
           placeholderTextColor = "#F07167"
-          
-          onSubmitEditing={()=>this.callUser()}
-          onChangeText={(text) => this.setState({inputText: text})}
+          onSubmitEditing={() => this.callUser()}
+          onChangeText={(text) => this.refreshShearchBar(text)}
           placeholder=" Search User"
           keyboardType="default"
           />
@@ -78,6 +98,8 @@ export default class Home extends React.Component {
             contentContainerStyle={{paddingBottom: 90}}
             keyExtractor={item => item.id}
             renderItem= {(item) => this.Item(item.item)}
+            onEndReached={(item) => this.loadNewElem(item)}
+            onEndReachedThreshold={1}
             />  
           </View>
         </View>
