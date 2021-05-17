@@ -6,7 +6,7 @@ import { SafeAreaView,
          StyleSheet, 
          Image,
          View,
-         ActivityIndicator
+         ActivityIndicator,
          TouchableOpacity,
          AsyncStorage
         } from "react-native";
