@@ -6,11 +6,23 @@ import { SafeAreaView,
          StyleSheet, 
          Image,
          View,
-         TouchableOpacity,
          ActivityIndicator
+         TouchableOpacity,
+         AsyncStorage
         } from "react-native";
 import ApiRequest from "./../api/Call-GitHub"
 import RepositoriesSearch from "./RepositoriesSearch";
+
+_saveUser = async (username) => {
+  try {
+    await AsyncStorage.setItem(
+      'patrick',
+      username
+    );
+  } catch (error) {
+      console.log(error.message)
+  }
+};
 
 
 
