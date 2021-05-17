@@ -50,9 +50,6 @@ const Navigation = () => {
          name="Followers"
          component={Followers}/>
         <Stack.Screen
-         name="RepositoriesSearch"
-         component={RepositoriesSearch}/>
-        <Stack.Screen
          name="Issues"
          component={Issues}/>
         <Stack.Screen

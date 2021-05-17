@@ -49,11 +49,6 @@ export default class RepositoriesSearch extends React.Component {
     render () {
         return (
         <SafeAreaView style={styles.background}>
-
-            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("Home")}>
-              <Text style={{color:"#F07167"}}>User</Text>
-            </TouchableOpacity>
-
             <TextInput
             style={styles.input}
             placeholderTextColor = "#F07167"
@@ -105,6 +100,16 @@ const styles = StyleSheet.create({
         width:100,
         marginTop: 10,
         marginLeft:280,
+        borderRadius:17,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:'grey',
+      },
+      repositoryButton2:{
+        height:40,
+        width:100,
+        marginTop: -41,
+        marginLeft:60,
         borderRadius:17,
         justifyContent:"center",
         alignItems:"center",

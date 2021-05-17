@@ -6,9 +6,11 @@ import { SafeAreaView,
          StyleSheet, 
          Image,
          View,
-         TouchableOpacity
+         TouchableOpacity,
+         ActivityIndicator
         } from "react-native";
 import ApiRequest from "./../api/Call-GitHub"
+import RepositoriesSearch from "./RepositoriesSearch";
 
 
 
@@ -18,7 +20,9 @@ export default class Home extends React.Component {
         super(props)
         this.state = {
             inputText: "",
-            users: []
+            users: [],
+            repoOrUser: false,
+            NbUser: 20,
         }
     }
 
@@ -35,42 +39,60 @@ export default class Home extends React.Component {
           </View>
         );
       }
-  
-     callUser = async (text) => {
-        if (text.length > 2) {
-            await ApiRequest.getInfoUser(text, 100).then(data => {
+
+     callUser = async () => {
+        if (this.state.inputText.length > 2) {
+            await ApiRequest.getInfoUser(this.state.inputText, this.state.NbUser).then(data => {
                 this.setState({users: data})
             })
         }
     };
 
+    DisplayUser = () => {
+      return (
+        <View>
+          <TextInput
+          style={styles.input}
+          placeholderTextColor = "#F07167"
+          
+          onSubmitEditing={()=>this.callUser()}
+          onChangeText={(text) => this.setState({inputText: text})}
+          placeholder=" Search User"
+          keyboardType="default"
+          />
+          <View>
+            <FlatList
+            data={this.state.users}
+            contentContainerStyle={{paddingBottom: 90}}
+            keyExtractor={item => item.id}
+            renderItem= {(item) => this.Item(item.item)}
+            />  
+          </View>
+        </View>
+      )
+    }
+
+    displayRepoOrUser = () => {
+      if (this.state.repoOrUser === false ) {
+        return(this.DisplayUser());
+      } else {
+        return(<RepositoriesSearch/>)
+      }
+
+    }
+
         
     render () {
         return (
-        <SafeAreaView style={styles.background}>
-
-            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("RepositoriesSearch")}>
+          <SafeAreaView style={styles.background}>
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.setState({repoOrUser: true})}>
               <Text style={{color:"#F07167"}}>Repositories</Text>
             </TouchableOpacity>
-
-            <TextInput
-            style={styles.input}
-            placeholderTextColor = "#F07167"
-
-            onSubmitEditing={()=>this.callUser(this.state.inputText)}
-            onChangeText={(text) => this.setState({inputText: text})}
-            placeholder=" Search User"
-            keyboardType="default"
-            />
-            <View>
-            <FlatList
-            data={this.state.users}
-            keyExtractor={item => item.id}
-            renderItem= {(item) => this.Item(item.item) }
-            />  
-            </View>
-          
-        </SafeAreaView>
+            <TouchableOpacity style={styles.repositoryButton2} onPress={() => this.setState({repoOrUser: false})}>
+              <Text style={{color:"#F07167"}}>User</Text>
+            </TouchableOpacity>
+            {this.displayRepoOrUser()}
+          </SafeAreaView>
         );
     }
 }
@@ -104,6 +126,16 @@ const styles = StyleSheet.create({
         width:100,
         marginTop: 10,
         marginLeft:280,
+        borderRadius:17,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:'grey',
+      },
+      repositoryButton2:{
+        height:40,
+        width:100,
+        marginTop: -41,
+        marginLeft: 30,
         borderRadius:17,
         justifyContent:"center",
         alignItems:"center",
