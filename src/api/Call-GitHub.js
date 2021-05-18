@@ -9,7 +9,7 @@ export default class ApiRequest {
             }
           })
         .then((response) => {
-            // console.log("ici",response.data)
+            //console.log("ici",response.data)
             return (response.data.items)
         })
         .catch((error) => {
@@ -29,8 +29,8 @@ export default class ApiRequest {
             return (response.data.items)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
-            return (error.response)
+            // console.log("Err", error.status)
+            return ("undefined")
         })
     }
 

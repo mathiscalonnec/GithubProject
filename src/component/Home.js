@@ -63,8 +63,7 @@ export default class Home extends React.Component {
         }
     };
 
-    loadNewElem = (item) => {
-      console.log(item.distanceFromEnd)
+    loadNewElem = () => {
       this.setState(
         {
           NbUser: this.state.NbUser + 20
@@ -73,7 +72,6 @@ export default class Home extends React.Component {
           this.callUser();
         }
         )
-        console.log(this.state.NbUser, this.state.inputText)
     }
 
     refreshShearchBar = (text) => {
@@ -98,7 +96,7 @@ export default class Home extends React.Component {
             contentContainerStyle={{paddingBottom: 90}}
             keyExtractor={item => item.id}
             renderItem= {(item) => this.Item(item.item)}
-            onEndReached={(item) => this.loadNewElem(item)}
+            onEndReached={() => this.loadNewElem()}
             onEndReachedThreshold={1}
             />  
           </View>
