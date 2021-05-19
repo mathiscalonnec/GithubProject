@@ -31,7 +31,7 @@ export default class RepositoriesSearch extends React.Component {
               <Text style={{marginTop:10, fontSize:16, color:"#EBE7E6"}}>{item.owner.login}</Text>
             </View>
             <TouchableOpacity style={{height:50, width:50, fontSize:20, marginRight: 10, justifyContent:"center", alignItems:"center"}}
-                              onPress={() => this.props.navigation.navigate("Repository", {data:item})}>
+                              onPress={() => this.props.navigation.navigate("Repository", {data:item, fav:false})}>
               <Text style={{color:"#F07167"}}>More</Text>
             </TouchableOpacity>
           </View>
