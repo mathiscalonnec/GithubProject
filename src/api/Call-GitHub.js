@@ -98,4 +98,18 @@ export default class ApiRequest {
             return (error.response)
         })
     }
+
+    static async getRepo(name, repo) {
+        return await Axios.get(`https://api.github.com/repos/${name}/${repo}`, {
+          })
+        .then((response) => {
+           // console.log("ici",response.data)
+            return (response.data)
+        })
+        .catch((error) => {
+            //console.log("Err", error.response)
+            return (error.response)
+        })
+    }
+
 };

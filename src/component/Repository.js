@@ -20,12 +20,16 @@ export default class Repository extends React.Component {
             size: "",
             defaultBranchName: "",
             private: "",
-            iconColour : "white"
+            iconColour : ""
 
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        console.log("data------lololol", this.props.route.params.data)
+        let calldata = await userStorage.isFavorite('repository', this.props.route.params.data.user, this.props.route.params.data.repo)
+        console.log("call data------lololol", calldata)
+
         this.setState({user: this.props.route.params.data.owner.login})
         this.setState({projectName: this.props.route.params.data.name})
         this.setState({description: this.props.route.params.data.description})
@@ -38,6 +42,9 @@ export default class Repository extends React.Component {
             this.setState({fork: "true"})
         else
             this.setState({fork: "NULL"})
+        const color = await userStorage.isFavorite('repository', this.props.route.params.data.name)
+        this.setState({iconColour: color})
+    
     }
 
     render () {
@@ -57,10 +64,11 @@ export default class Repository extends React.Component {
                         onPress={() => {
                             if (this.state.iconColour === "white") {
                                 this.setState(  {iconColour : "red"})
-                                userStorage.saveItem(this.state.projectName, "repository")
-                                console.log("add : ", this.state.projectName)
+                                userStorage.saveRepo(this.state.user, this.state.projectName, "repository")
+                                let value = userStorage.getItem("repository")
+                                
                             } else {
-                                userStorage.removeItem("user", this.state.user)
+                                userStorage.removeItem("repository", this.state.projectName)
                                 this.setState({iconColour: "white"})
 
                             }
