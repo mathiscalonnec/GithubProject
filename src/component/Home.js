@@ -6,24 +6,23 @@ import { SafeAreaView,
          StyleSheet, 
          Image,
          View,
+         Button,
          ActivityIndicator,
          TouchableOpacity,
-         AsyncStorage
         } from "react-native";
+
+        import {
+          AsyncStorage
+      } from "@react-native-async-storage/async-storage"
+
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 import ApiRequest from "./../api/Call-GitHub"
 import RepositoriesSearch from "./RepositoriesSearch";
 
-_saveUser = async (username) => {
-  try {
-    await AsyncStorage.setItem(
-      'patrick',
-      username
-    );
-  } catch (error) {
-      console.log(error.message)
-  }
-};
-
+import userStorage from "./userStorage";
 
 
 export default class Home extends React.Component {
@@ -35,7 +34,7 @@ export default class Home extends React.Component {
             users: [],
             repoOrUser: false,
             NbUser: 20,
-        }
+          }
     }
 
     Item (item) {
@@ -45,9 +44,10 @@ export default class Home extends React.Component {
             <View style={{alignItems:"center",flex:1}}>
               <Text style={{marginTop:10, fontSize:20, color:"#EBE7E6"}}>{item.login}</Text>
             </View>
-            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item})}>
+            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item.login})}>
               <Text style={{color:"#F07167"}}>More</Text>
             </TouchableOpacity>
+
           </View>
         );
       }
@@ -60,9 +60,20 @@ export default class Home extends React.Component {
         }
     };
 
+    componentDidMount = async() => {
+    let michel = await userStorage.getItem('user')
+    console.log("test", michel.data)
+    }
+
     DisplayUser = () => {
       return (
-        <View>
+        <View> 
+           <Button
+               onPress={() => this.props.navigation.navigate("FavoriteUser")} 
+               title="Favorite User"
+               color="red"
+             /> 
+
           <TextInput
           style={styles.input}
           placeholderTextColor = "#F07167"
@@ -88,7 +99,7 @@ export default class Home extends React.Component {
       if (this.state.repoOrUser === false ) {
         return(this.DisplayUser());
       } else {
-        return(<RepositoriesSearch/>)
+        return(<RepositoriesSearch navigation = {this.props.navigation} />)
       }
 
     }

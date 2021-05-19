@@ -15,9 +15,10 @@ import User from "./User"
 import Followers from "./Followers"
 import Repository from "./Repository"
 import Contributors from './Contributors'
-import RepositoriesSearch from './RepositoriesSearch'
 import Issues from './Issues'
 import Issue from './Issue'
+import FavoriteUser from './FavoriteUser'
+import FavoriteRepository from './FavoriteRepository'
 
 function UserScreen() {
   return (
@@ -55,6 +56,12 @@ const Navigation = () => {
         <Stack.Screen
          name="Issue"
          component={Issue}/>
+        <Stack.Screen
+         name="FavoriteUser"
+         component={FavoriteUser}/>
+        <Stack.Screen
+         name="FavoriteRepository"
+         component={FavoriteRepository}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
