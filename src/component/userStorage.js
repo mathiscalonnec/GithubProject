@@ -18,15 +18,13 @@ import RepositoriesSearch from "./RepositoriesSearch";
 export default class userStorage {
 
     static saveRepo = async (username, reponame, type) => {
-        console.log("input info", username, reponame)
-
+       
         let value = await this.getItem(type)
         let pair = {user:username, repo:reponame}
 
         if (value.data !== null) {
             let tab = value.data
             tab.push(pair)
-            console.log(tab)
             try {
                 await AsyncStorage.setItem(
                     type,
@@ -36,9 +34,8 @@ export default class userStorage {
                 console.log(error.message)
             }
         } else {
-            console.log("input info", username, reponame)
             const myArray = []
-            myArray.push(value)
+            myArray.push(pair)
             try {
                 await AsyncStorage.setItem(
                     type,
@@ -60,7 +57,6 @@ export default class userStorage {
         if (value.data !== null) {
             const tab = value.data
             tab.push(username)
-            console.log(tab)
             try {
                 await AsyncStorage.setItem(
                     type,
@@ -101,7 +97,6 @@ export default class userStorage {
     static removeItem = async (item, name) => {
         let value = await this.getItem(item)
         if (value.data !== null) {
-            console.log(value)
             let tab = value.data
             const ind = tab.indexOf(name)
             if (ind != -1)
@@ -119,7 +114,14 @@ export default class userStorage {
 
     static isFavorite = async(item, name) => {
         let value = await this.getItem(item)
-        const found = value.data.find(element => element === name)
+        let found = null
+
+        if(value.data === null)
+            return ("white")
+        if (item === "user")
+            found = value.data.find(element => element === name)
+        else
+            found = value.data.find(element => element.repo === name)
         if (found === undefined)
             return ("white")
         else

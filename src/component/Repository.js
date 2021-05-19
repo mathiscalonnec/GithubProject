@@ -5,6 +5,7 @@ import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, FlatList,
     Button} from "react-native";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ApiRequest from "../api/Call-GitHub";
 import userStorage from "./userStorage";
 
 
@@ -20,31 +21,47 @@ export default class Repository extends React.Component {
             size: "",
             defaultBranchName: "",
             private: "",
-            iconColour : ""
+            iconColour : "white"
 
         }
     }
 
     async componentDidMount() {
-        console.log("data------lololol", this.props.route.params.data)
-        let calldata = await userStorage.isFavorite('repository', this.props.route.params.data.user, this.props.route.params.data.repo)
-        console.log("call data------lololol", calldata)
+        if (this.props.route.params.fav === false) {
+            this.setState({user: this.props.route.params.data.owner.login})
+            this.setState({projectName: this.props.route.params.data.name})
+            this.setState({description: this.props.route.params.data.description})
+            this.setState({size: this.props.route.params.data.size})
+            this.setState({private: this.props.route.params.data.private})
+            this.setState({defaultBranchName: this.props.route.params.data.default_branch})
+            if (this.props.route.params.data.fork === false)
+                this.setState({fork: "false"})
+            else if (this.props.route.params.data.fork === true)
+                this.setState({fork: "true"})
+            else
+                this.setState({fork: "NULL"})
+            const color = await userStorage.isFavorite('repository', this.props.route.params.data.name)
+            this.setState({iconColour: color})
+        }
+        else {
+            let calldata = await ApiRequest.getRepo(this.props.route.params.data.user, this.props.route.params.data.repo)
 
-        this.setState({user: this.props.route.params.data.owner.login})
-        this.setState({projectName: this.props.route.params.data.name})
-        this.setState({description: this.props.route.params.data.description})
-        this.setState({size: this.props.route.params.data.size})
-        this.setState({private: this.props.route.params.data.private})
-        this.setState({defaultBranchName: this.props.route.params.data.default_branch})
-        if (this.props.route.params.data.fork === false)
-            this.setState({fork: "false"})
-        else if (this.props.route.params.data.fork === true)
-            this.setState({fork: "true"})
-        else
-            this.setState({fork: "NULL"})
-        const color = await userStorage.isFavorite('repository', this.props.route.params.data.name)
-        this.setState({iconColour: color})
-    
+            this.setState({user: calldata.owner.login})
+            this.setState({projectName: calldata.name})
+            this.setState({description: calldata.description})
+            this.setState({size: calldata.size})
+            this.setState({private: calldata.private})
+            this.setState({defaultBranchName: calldata.default_branch})
+            if (calldata.fork === false)
+                this.setState({fork: "false"})
+            else if (calldata.fork === true)
+                this.setState({fork: "true"})
+            else
+                this.setState({fork: "NULL"})
+            const color = await userStorage.isFavorite('repository', calldata.name)
+            this.setState({iconColour: color})
+
+        }    
     }
 
     render () {
@@ -61,14 +78,14 @@ export default class Repository extends React.Component {
                         size={26}
                         color= {this.state.iconColour}
                         name="heart"
-                        onPress={() => {
+                        onPress={async() => {
                             if (this.state.iconColour === "white") {
                                 this.setState(  {iconColour : "red"})
-                                userStorage.saveRepo(this.state.user, this.state.projectName, "repository")
+                                await userStorage.saveRepo(this.state.user, this.state.projectName, "repository")
                                 let value = userStorage.getItem("repository")
                                 
                             } else {
-                                userStorage.removeItem("repository", this.state.projectName)
+                                await userStorage.removeItem("repository", this.state.projectName)
                                 this.setState({iconColour: "white"})
 
                             }

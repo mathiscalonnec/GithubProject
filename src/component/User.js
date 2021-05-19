@@ -20,7 +20,7 @@ export default class User extends React.Component {
             url_followers: "",
             description: "",
             repo: [],
-            iconColour : ""
+            iconColour : "white"
 
         }
     }
