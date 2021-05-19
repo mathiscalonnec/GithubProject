@@ -1,8 +1,10 @@
 import React from "react";
-import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, FlatList,
-    View,
-    ScrollView,
-    Button} from "react-native";
+import { SafeAreaView,
+         Text,
+         StyleSheet,
+         TouchableOpacity,
+         View
+} from "react-native";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ApiRequest from "../api/Call-GitHub";

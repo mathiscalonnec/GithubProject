@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeAreaView,
-         TextInput,
          FlatList,
          Text, 
          StyleSheet, 
@@ -9,10 +8,7 @@ import { SafeAreaView,
          TouchableOpacity
         } from "react-native";
 
-
-import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
 import ApiRequest from "./../api/Call-GitHub"
-
 
 export default class Followers extends React.Component {
 

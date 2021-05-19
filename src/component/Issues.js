@@ -1,10 +1,8 @@
 import React from "react";
 import { SafeAreaView,
-    TextInput,
     FlatList,
     Text, 
     StyleSheet, 
-    Image,
     View,
     TouchableOpacity
    } from "react-native";

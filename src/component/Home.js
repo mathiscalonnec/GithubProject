@@ -6,35 +6,11 @@ import { SafeAreaView,
          StyleSheet, 
          Image,
          View,
-         Button,
-         ActivityIndicator,
          TouchableOpacity,
         } from "react-native";
 
-        import {
-          AsyncStorage
-      } from "@react-native-async-storage/async-storage"
-
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
 import ApiRequest from "./../api/Call-GitHub"
 import RepositoriesSearch from "./RepositoriesSearch";
-
-import userStorage from "./userStorage";
-/*
-_saveUser = async (username) => {
-  try {
-    await AsyncStorage.setItem(
-      'patrick',
-      username
-    );
-  } catch (error) {
-      console.log(error.message)
-  }
-}; */
-
 
 export default class Home extends React.Component {
 

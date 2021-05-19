@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, FlatList,
          View,
          ScrollView} from "react-native";
-import { Item } from "react-native-paper/lib/typescript/components/List/List";
 import ApiRequest from "../api/Call-GitHub"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import userStorage from "./userStorage";
@@ -40,8 +39,7 @@ export default class User extends React.Component {
       }
 
 
-    async CallAPI(){
-        console.log("premier consol", this.props.route.params.data)
+    async CallAPI() {
         await ApiRequest.getUser(this.props.route.params.data).then(data => {
             this.setState({picture: data.avatar_url})
             this.setState({type: data.type})
@@ -62,7 +60,7 @@ export default class User extends React.Component {
             this.setState({user: this.props.route.params.data})
         });
         const color = await userStorage.isFavorite('user', this.props.route.params.data)
-        this.setState({iconColour: color})
+        this.setState({iconColor: color})
     }
 
     render () {
@@ -87,7 +85,6 @@ export default class User extends React.Component {
                 if (this.state.iconColor === "white") {
                     this.setState(  {iconColor : "red"})
                     userStorage.saveItem(this.state.user, "user")
-                    console.log("add : ", this.state.user)
                 } else {
                     userStorage.removeItem("user", this.state.user)
                     this.setState({iconColor: "white"})

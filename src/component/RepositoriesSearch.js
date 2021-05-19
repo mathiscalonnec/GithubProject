@@ -4,12 +4,10 @@ import { SafeAreaView,
          FlatList,
          Text, 
          StyleSheet, 
-         Image,
          View,
          TouchableOpacity
         } from "react-native";
 import ApiRequest from "./../api/Call-GitHub"
-
 
 
 export default class RepositoriesSearch extends React.Component {

@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeAreaView,
-         TextInput,
          FlatList,
          Text, 
          StyleSheet, 
@@ -30,7 +29,7 @@ export default class Contributors extends React.Component {
             <View style={{alignItems:"center",flex:1}}>
               <Text style={{marginTop:10, fontSize:20, color:"#EBE7E6"}}>{item.login}</Text>
             </View>
-            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item})}>
+            <TouchableOpacity style={{height:50,width:50, justifyContent:"center", alignItems:"center"}} onPress={() => this.props.navigation.navigate("User", {data:item.login})}>
               <Text style={{color:"#F07167"}}>More</Text>
             </TouchableOpacity>
           </View>

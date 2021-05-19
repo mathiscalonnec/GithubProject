@@ -9,11 +9,9 @@ export default class ApiRequest {
             }
           })
         .then((response) => {
-            //console.log("ici",response.data)
             return (response.data.items)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return ("undefined")
         })
     }
@@ -25,11 +23,9 @@ export default class ApiRequest {
             }
           })
         .then((response) => {
-           // console.log("ici",response.data)
             return (response.data.items)
         })
         .catch((error) => {
-            // console.log("Err", error.status)
             return ("undefined")
         })
     }
@@ -38,11 +34,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/users/${name}/repos`, {
           })
         .then((response) => {
-           // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }
@@ -51,11 +45,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/users/${name}/followers`, {
           })
         .then((response) => {
-           // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }
@@ -64,11 +56,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/repos/${name}/${repo}/contributors`, {
           })
         .then((response) => {
-            //console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }
@@ -77,11 +67,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/repos/${name}/${repo}/issues`, {
           })
         .then((response) => {
-            // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }
@@ -90,11 +78,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/users/${name}`, {
           })
         .then((response) => {
-           // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }
@@ -103,11 +89,9 @@ export default class ApiRequest {
         return await Axios.get(`https://api.github.com/repos/${name}/${repo}`, {
           })
         .then((response) => {
-           // console.log("ici",response.data)
             return (response.data)
         })
         .catch((error) => {
-            //console.log("Err", error.response)
             return (error.response)
         })
     }

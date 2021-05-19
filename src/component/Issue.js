@@ -1,15 +1,10 @@
 import React from "react";
 import { SafeAreaView,
-    TextInput,
-    FlatList,
     Text, 
     StyleSheet, 
-    Image,
     View,
-    TouchableOpacity,
     ScrollView
    } from "react-native";
-import ApiRequest from "./../api/Call-GitHub"
 
 export default class Issue extends React.Component {
     render() {

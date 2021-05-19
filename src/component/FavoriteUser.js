@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeAreaView,
-         TextInput,
          FlatList,
          Text, 
          StyleSheet, 
@@ -10,10 +9,6 @@ import { SafeAreaView,
         } from "react-native";
 
 import userStorage from "./userStorage";
-
-
-import ApiRequest from "../api/Call-GitHub"
-
 
 export default class FavoriteUser extends React.Component {
 
@@ -46,8 +41,6 @@ export default class FavoriteUser extends React.Component {
 
         
     render () {
-        console.log("logg", this.state.users)
-
         return (
         <SafeAreaView style={styles.background}>
             <View>

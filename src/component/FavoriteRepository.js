@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeAreaView,
-         TextInput,
          FlatList,
          Text, 
          StyleSheet, 
@@ -10,10 +9,6 @@ import { SafeAreaView,
         } from "react-native";
 
 import userStorage from "./userStorage";
-
-
-import ApiRequest from "../api/Call-GitHub"
-
 
 export default class FavoriteRepository extends React.Component {
 
@@ -34,7 +29,6 @@ export default class FavoriteRepository extends React.Component {
     }
 
     Item (item) {
-      console.log("item", item)
         return (
           <View style={styles.listItem}>
             <Image source={{uri:item.avatar_url}}  style={{width:60, height:60,borderRadius:30}} />
@@ -53,7 +47,6 @@ export default class FavoriteRepository extends React.Component {
 
         
     render () {
-      console.log("ici", this.state.repositories)
         return (
         <SafeAreaView style={styles.background}>
             <View>

@@ -1,19 +1,5 @@
-import React from "react";
-import { SafeAreaView,
-         TextInput,
-         FlatList,
-         Text, 
-         StyleSheet, 
-         Image,
-         View,
-         ActivityIndicator,
-         TouchableOpacity,
-        } from "react-native";
+
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
-import ApiRequest from "./../api/Call-GitHub"
-import RepositoriesSearch from "./RepositoriesSearch";
-
 
 export default class userStorage {
 
@@ -96,14 +82,20 @@ export default class userStorage {
 
     static removeItem = async (item, name) => {
         let value = await this.getItem(item)
+
         if (value.data !== null) {
             let tab = value.data
-            const ind = tab.indexOf(name)
-            if (ind != -1)
+            let ind = null
+
+            if(item === "user")
+                ind = tab.indexOf(name)
+            else 
+                ind = tab.findIndex(element => element.repo === name)
+           if (ind != -1)
                 tab.splice(ind, 1)
             try {
                 await AsyncStorage.setItem(
-                    'user',
+                    item,
                     JSON.stringify(tab)
                 );
             } catch (error) {
