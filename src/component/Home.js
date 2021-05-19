@@ -92,11 +92,9 @@ export default class Home extends React.Component {
     DisplayUser = () => {
       return (
         <View> 
-           <Button
-               onPress={() => this.props.navigation.navigate("FavoriteUser")} 
-               title="Favorite User"
-               color="red"
-             /> 
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("FavoriteUser")}>
+              <Text style={{color:"#F07167"}}>Favories</Text>
+            </TouchableOpacity>
 
           <TextInput
           style={styles.input}
@@ -139,6 +137,7 @@ export default class Home extends React.Component {
             <TouchableOpacity style={styles.repositoryButton2} onPress={() => this.setState({repoOrUser: false})}>
               <Text style={{color:"#F07167"}}>User</Text>
             </TouchableOpacity>
+
             {this.displayRepoOrUser()}
           </SafeAreaView>
         );

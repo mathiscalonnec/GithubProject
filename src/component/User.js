@@ -79,6 +79,7 @@ export default class User extends React.Component {
             </TouchableOpacity>
 
             <Icon
+            style={styles.heartIcon}
             size={26}
             color= {this.state.iconColour}
             name="heart"
@@ -176,6 +177,11 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         flexDirection:"row",
         borderRadius:20
-      }
+      },
+    heartIcon:{
+        margin:20,
+        padding:10
+    }
+    
 
   });

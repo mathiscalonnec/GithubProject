@@ -66,6 +66,11 @@ export default class RepositoriesSearch extends React.Component {
     render () {
         return (
         <SafeAreaView style={styles.background}>
+
+            <TouchableOpacity style={styles.repositoryButton} onPress={() => this.props.navigation.navigate("FavoriteRepository")}>
+              <Text style={{color:"#F07167"}}>Favories</Text>
+            </TouchableOpacity>
+
             <TextInput
             style={styles.input}
             placeholderTextColor = "#F07167"
