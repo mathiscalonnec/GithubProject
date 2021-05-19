@@ -20,7 +20,7 @@ export default class User extends React.Component {
             url_followers: "",
             description: "",
             repo: [],
-            iconColour : ""
+            iconColor : "white"
 
         }
     }
@@ -81,16 +81,16 @@ export default class User extends React.Component {
             <Icon
             style={styles.heartIcon}
             size={26}
-            color= {this.state.iconColour}
+            color= {this.state.iconColor}
             name="heart"
             onPress={() => {
-                if (this.state.iconColour === "white") {
-                    this.setState(  {iconColour : "red"})
+                if (this.state.iconColor === "white") {
+                    this.setState(  {iconColor : "red"})
                     userStorage.saveItem(this.state.user, "user")
                     console.log("add : ", this.state.user)
                 } else {
                     userStorage.removeItem("user", this.state.user)
-                    this.setState({iconColour: "white"})
+                    this.setState({iconColor: "white"})
 
                 }
             }
