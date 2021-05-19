@@ -18,7 +18,8 @@ export default class RepositoriesSearch extends React.Component {
         super(props)
         this.state = {
             inputText: "",
-            users: []
+            users: [],
+            nbRepo: 20,
         }
     }
 
@@ -37,15 +38,31 @@ export default class RepositoriesSearch extends React.Component {
         );
       }
   
-     callUser = async (text) => {
-        if (text.length > 2) {
-            await ApiRequest.getRepositories(text, 100).then(data => {
-                this.setState({users: data})
-            })
+     callUser = async () => {
+        if (this.state.inputText.length > 2) {
+            await ApiRequest.getRepositories(this.state.inputText, this.state.nbRepo).then(data => {
+              if (data != "undefined")
+              this.setState({users: data})
+          })
         }
     };
 
-        
+    loadNewElem = () => {
+      this.setState(
+        {
+          nbRepo: this.state.nbRepo + 20
+        },
+        () => {
+          this.callUser();
+        }
+        )
+    }
+
+    refreshShearchBar = (text) => {
+      this.setState({inputText: text})
+      this.setState({nbRepo: 20})
+    }
+    
     render () {
         return (
         <SafeAreaView style={styles.background}>
@@ -54,7 +71,7 @@ export default class RepositoriesSearch extends React.Component {
             placeholderTextColor = "#F07167"
 
             onSubmitEditing={()=>this.callUser(this.state.inputText)}
-            onChangeText={(text) => this.setState({inputText: text})}
+            onChangeText={(text) => this.refreshShearchBar(text)}
             placeholder=" Search Repository"
             keyboardType="default"
             />
@@ -62,7 +79,10 @@ export default class RepositoriesSearch extends React.Component {
             <FlatList
             data={this.state.users}
             keyExtractor={item => item.id}
-            renderItem= {(item) => this.Item(item.item) }
+            renderItem= {(item) => this.Item(item.item)}
+            contentContainerStyle={{paddingBottom: 90}}
+            onEndReached={() => this.loadNewElem()}
+            onEndReachedThreshold={1}
             />  
             </View>
           

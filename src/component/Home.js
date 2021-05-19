@@ -23,6 +23,17 @@ import ApiRequest from "./../api/Call-GitHub"
 import RepositoriesSearch from "./RepositoriesSearch";
 
 import userStorage from "./userStorage";
+/*
+_saveUser = async (username) => {
+  try {
+    await AsyncStorage.setItem(
+      'patrick',
+      username
+    );
+  } catch (error) {
+      console.log(error.message)
+  }
+}; */
 
 
 export default class Home extends React.Component {
@@ -34,7 +45,7 @@ export default class Home extends React.Component {
             users: [],
             repoOrUser: false,
             NbUser: 20,
-          }
+        }
     }
 
     Item (item) {
@@ -55,15 +66,11 @@ export default class Home extends React.Component {
      callUser = async () => {
         if (this.state.inputText.length > 2) {
             await ApiRequest.getInfoUser(this.state.inputText, this.state.NbUser).then(data => {
-                this.setState({users: data})
+                if (data != "undefined")
+                  this.setState({users: data})
             })
         }
     };
-
-    componentDidMount = async() => {
-    let michel = await userStorage.getItem('user')
-    console.log("test", michel.data)
-    }
 
     DisplayUser = () => {
       return (
@@ -77,9 +84,8 @@ export default class Home extends React.Component {
           <TextInput
           style={styles.input}
           placeholderTextColor = "#F07167"
-          
-          onSubmitEditing={()=>this.callUser()}
-          onChangeText={(text) => this.setState({inputText: text})}
+          onSubmitEditing={() => this.callUser()}
+          onChangeText={(text) => this.refreshShearchBar(text)}
           placeholder=" Search User"
           keyboardType="default"
           />
@@ -89,6 +95,8 @@ export default class Home extends React.Component {
             contentContainerStyle={{paddingBottom: 90}}
             keyExtractor={item => item.id}
             renderItem= {(item) => this.Item(item.item)}
+            onEndReached={() => this.loadNewElem()}
+            onEndReachedThreshold={1}
             />  
           </View>
         </View>
