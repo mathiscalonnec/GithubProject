@@ -26,9 +26,9 @@ export default class RepositoriesSearch extends React.Component {
     Item (item) {
         return (
           <View style={styles.listItem}>
-            <View style={{alignItems:"center",flex:1}}>
-              <Text style={{marginTop:10, fontSize:22, marginLeft:-150, fontFamily:'bold', color:"#EBE7E6"}}>{item.name}</Text>
-              <Text style={{marginTop:10, fontSize:16, marginLeft:-100, color:"#EBE7E6"}}>{item.owner.login}</Text>
+            <View style={{alignItems: "flex-start",flex:1}}>
+              <Text style={{marginTop:10, fontSize:22, fontFamily:'bold', color:"#EBE7E6"}}>{item.name}</Text>
+              <Text style={{marginTop:10, fontSize:16, color:"#EBE7E6"}}>{item.owner.login}</Text>
             </View>
             <TouchableOpacity style={{height:50, width:50, fontSize:20, marginRight: 10, justifyContent:"center", alignItems:"center"}}
                               onPress={() => this.props.navigation.navigate("Repository", {data:item})}>

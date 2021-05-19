@@ -72,7 +72,6 @@ export default class Home extends React.Component {
         }
     };
 
-    
     loadNewElem = () => {
       this.setState(
         {
@@ -137,7 +136,6 @@ export default class Home extends React.Component {
             <TouchableOpacity style={styles.repositoryButton2} onPress={() => this.setState({repoOrUser: false})}>
               <Text style={{color:"#F07167"}}>User</Text>
             </TouchableOpacity>
-
             {this.displayRepoOrUser()}
           </SafeAreaView>
         );
