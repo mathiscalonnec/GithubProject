@@ -72,6 +72,23 @@ export default class Home extends React.Component {
         }
     };
 
+    
+    loadNewElem = () => {
+      this.setState(
+        {
+          NbUser: this.state.NbUser + 20
+        },
+        () => {
+          this.callUser();
+        }
+        )
+    }
+
+    refreshShearchBar = (text) => {
+      this.setState({inputText: text})
+      this.setState({NbUser: 20})
+    }
+
     DisplayUser = () => {
       return (
         <View> 
