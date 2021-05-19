@@ -4,6 +4,10 @@ import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, FlatList,
     ScrollView,
     Button} from "react-native";
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import userStorage from "./userStorage";
+
+
 export default class Repository extends React.Component {
 
     constructor(props) {
@@ -16,6 +20,8 @@ export default class Repository extends React.Component {
             size: "",
             defaultBranchName: "",
             private: "",
+            iconColour : "white"
+
         }
     }
 
@@ -43,6 +49,25 @@ export default class Repository extends React.Component {
                     <Text style={styles.userName}> {this.state.user} </Text>
                     </View>
                 </View>
+                    <Icon
+                        style={styles.heartIcon}
+                        size={26}
+                        color= {this.state.iconColour}
+                        name="heart"
+                        onPress={() => {
+                            if (this.state.iconColour === "white") {
+                                this.setState(  {iconColour : "red"})
+                                userStorage.saveItem(this.state.projectName, "repository")
+                                console.log("add : ", this.state.projectName)
+                            } else {
+                                userStorage.removeItem("user", this.state.user)
+                                this.setState({iconColour: "white"})
+
+                            }
+                        }
+                    }   
+                   />
+
                 <View style={styles.blockDescription}>
                     <Text style={styles.repoDescription}> {this.state.description} </Text>    
                 </View>
@@ -122,5 +147,9 @@ const styles = StyleSheet.create({
     bottomButton:{
         color:"#F07167",
         fontSize: 20
+    },
+    heartIcon:{
+        margin:20,
+        padding:10
     }
 })

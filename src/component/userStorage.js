@@ -52,6 +52,7 @@ export default class userStorage {
     static getItem = async (item) => {
         try {
         const value = await AsyncStorage.getItem(item)
+        console.log("valueeeeee", value)
         let data = JSON.parse(value)
         return {data}
         }

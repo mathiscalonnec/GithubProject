@@ -26,7 +26,7 @@ export default class FavoriteRepository extends React.Component {
 
     async componentDidMount() {
         let array = await userStorage.getItem('repository')
-        this.setState({users: array.data})
+        this.setState({repositories: array.data})
 
     }
 
@@ -46,13 +46,13 @@ export default class FavoriteRepository extends React.Component {
 
         
     render () {
-        console.log("logg", this.state.users)
+        console.log("logg", this.state.repositories)
 
         return (
         <SafeAreaView style={styles.background}>
             <View>
               <FlatList
-              data={this.state.users}
+              data={this.state.repositories}
               keyExtractor={(item, index) => index}
               renderItem= {(item, index) => this.Item(item.item) }
               />  
